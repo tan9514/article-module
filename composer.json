@@ -1,0 +1,25 @@
+{
+    "name": "pri-liming/article-module",
+    "description": "Laravel8.0 Article management package",
+    "type": "laravel-module",
+    "authors": [
+        {
+            "name": "liming",
+            "email": "1154263375@qq.com"
+        }
+    ],
+    "extra": {
+        "module-dir": "Custom",
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Article\\": ""
+        }
+    }
+}
