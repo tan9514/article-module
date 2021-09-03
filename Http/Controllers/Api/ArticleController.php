@@ -147,7 +147,7 @@ class ArticleController extends Controller
             ["id", "=", $id],
             ["status", "=", "1"],
         ])->first();
-        if(!$info) return $this->failed("文章不存在", config('liming_article_common.error'));
+        if(!$info) return $this->failed("文章不存在", config('articlecommon.error'));
 
         $readModel = new ArticleRead();
         $readModel->uid = Auth::guard('api')->id() ?? 0;
@@ -183,13 +183,13 @@ class ArticleController extends Controller
         $info = $info = Article::where([
             ["id", "=", $article_id],
         ])->first();
-        if(!$info) return $this->failed("文章不存在", config('liming_article_common.error'));
+        if(!$info) return $this->failed("文章不存在", config('articlecommon.error'));
 
         $type = $request->input("type");
-        if(!in_array($type, [0,1])) return $this->failed("操作类型不存在", config('liming_article_common.error'));
+        if(!in_array($type, [0,1])) return $this->failed("操作类型不存在", config('articlecommon.error'));
 
         $uid = Auth::guard('api')->id();
-        if($uid <= 0) return $this->failed("请先登录", config('liming_article_common.error'));
+        if($uid <= 0) return $this->failed("请先登录", config('articlecommon.error'));
 
         if($type == 1){
             $agreeInfo = ArticleAgree::where([
@@ -200,7 +200,7 @@ class ArticleController extends Controller
                 $ArticleAgreeModel = new ArticleAgree();
                 $ArticleAgreeModel->uid = $uid;
                 $ArticleAgreeModel->article_id = $article_id;
-                if(!$ArticleAgreeModel->save()) return $this->failed("点赞失败", config('liming_article_common.error'));
+                if(!$ArticleAgreeModel->save()) return $this->failed("点赞失败", config('articlecommon.error'));
             }
             $msg = "点赞成功";
         }else{
@@ -224,7 +224,7 @@ class ArticleController extends Controller
     {
         $request->check();
         $uid = Auth::guard('api')->id();
-        if($uid <= 0) return $this->failed("请先登录", config('liming_article_common.error'));
+        if($uid <= 0) return $this->failed("请先登录", config('articlecommon.error'));
 
         $page = $request->input("page") ?? 1;
         $pagesize = $request->input("limit") ?? 10;
@@ -271,13 +271,13 @@ class ArticleController extends Controller
         $info = $info = Article::where([
             ["id", "=", $article_id],
         ])->first();
-        if(!$info) return $this->failed("文章不存在", config('liming_article_common.error'));
+        if(!$info) return $this->failed("文章不存在", config('articlecommon.error'));
 
         $type = $request->input("type");
-        if(!in_array($type, [0,1])) return $this->failed("操作类型不存在", config('liming_article_common.error'));
+        if(!in_array($type, [0,1])) return $this->failed("操作类型不存在", config('articlecommon.error'));
 
         $uid = Auth::guard('api')->id();
-        if($uid <= 0) return $this->failed("请先登录", config('liming_article_common.error'));
+        if($uid <= 0) return $this->failed("请先登录", config('articlecommon.error'));
 
         if($type == 1){
             $agreeInfo = ArticleFavorite::where([
@@ -288,7 +288,7 @@ class ArticleController extends Controller
                 $ArticleAgreeModel = new ArticleFavorite();
                 $ArticleAgreeModel->uid = $uid;
                 $ArticleAgreeModel->article_id = $article_id;
-                if(!$ArticleAgreeModel->save()) return $this->failed("收藏失败", config('liming_article_common.error'));
+                if(!$ArticleAgreeModel->save()) return $this->failed("收藏失败", config('articlecommon.error'));
             }
             $msg = "收藏成功";
         }else{
@@ -313,7 +313,7 @@ class ArticleController extends Controller
     {
         $request->check();
         $uid = Auth::guard('api')->id();
-        if($uid <= 0) return $this->failed("请先登录", config('liming_article_common.error'));
+        if($uid <= 0) return $this->failed("请先登录", config('articlecommon.error'));
 
         $page = $request->input("page") ?? 1;
         $pagesize = $request->input("limit") ?? 10;
